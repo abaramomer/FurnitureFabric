@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="814dcbdbc5b14f0587db5fa1506f3071" Name="Diagram1">
+        <EntityTypeShape EntityType="FurnitureFabricModel.Color" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.FurnitureModel" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.FurnitureType" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.Material" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.Product" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.ProductStatus" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.Room" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.Sale" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.Warehouse" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Furniture_FurnitureType" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Furniture_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Product_Furniture" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Product_ProductStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Sale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FK_Warehouse_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FurnitureColors" ManuallyRouted="false" />
+        <AssociationConnector Association="FurnitureFabricModel.FurnitureMaterials" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

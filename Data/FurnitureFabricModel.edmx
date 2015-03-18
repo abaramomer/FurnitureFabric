@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FurnitureFabricModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureColors' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FurnitureColors">
+          <Key>
+            <PropertyRef Name="FurnitureModelId" />
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="FurnitureModelId" Type="int" Nullable="false" />
+          <Property Name="ColorId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureMaterials' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FurnitureMaterials">
+          <Key>
+            <PropertyRef Name="FurnitureModelId" />
+            <PropertyRef Name="MaterialId" />
+          </Key>
+          <Property Name="FurnitureModelId" Type="int" Nullable="false" />
+          <Property Name="MaterialId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FurnitureModel">
+          <Key>
+            <PropertyRef Name="FurnitureModelId" />
+          </Key>
+          <Property Name="FurnitureModelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+          <Property Name="AdditionalInfo" Type="nvarchar(max)" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="RoomId" Type="int" />
+        </EntityType>
+        <EntityType Name="FurnitureType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="MaterialId" />
+          </Key>
+          <Property Name="MaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Material" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="FurnitureModelId" Type="int" Nullable="false" />
+          <Property Name="AssemblyDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SaleDate" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Furniture_FurnitureType">
+          <End Role="FurnitureType" Type="Self.FurnitureType" Multiplicity="0..1" />
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="FurnitureModel">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="FurnitureModel">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureColors_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="FurnitureColors" Type="Self.FurnitureColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorId" />
+            </Principal>
+            <Dependent Role="FurnitureColors">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureColors_Furniture">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
+          <End Role="FurnitureColors" Type="Self.FurnitureColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureModel">
+              <PropertyRef Name="FurnitureModelId" />
+            </Principal>
+            <Dependent Role="FurnitureColors">
+              <PropertyRef Name="FurnitureModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureMaterials_Furniture">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
+          <End Role="FurnitureMaterials" Type="Self.FurnitureMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureModel">
+              <PropertyRef Name="FurnitureModelId" />
+            </Principal>
+            <Dependent Role="FurnitureMaterials">
+              <PropertyRef Name="FurnitureModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureMaterials_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="FurnitureMaterials" Type="Self.FurnitureMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="MaterialId" />
+            </Principal>
+            <Dependent Role="FurnitureMaterials">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Furniture">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureModel">
+              <PropertyRef Name="FurnitureModelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="FurnitureModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductStatus">
+          <End Role="ProductStatus" Type="Self.ProductStatus" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddProductToWarehouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FurnitureModelId" Type="int" Mode="In" />
+          <Parameter Name="AssemblyDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetUniqueSerialNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SaleProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+          <Parameter Name="Cost" Type="float" Mode="In" />
+          <Parameter Name="SaleDate" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="FurnitureFabricModelStoreContainer">
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FurnitureModel" EntityType="Self.FurnitureModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FurnitureType" EntityType="Self.FurnitureType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductStatus" EntityType="Self.ProductStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FurnitureColors" EntityType="Self.FurnitureColors" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[FurnitureColors].[FurnitureModelId] AS [FurnitureModelId], 
+[FurnitureColors].[ColorId] AS [ColorId]
+FROM [dbo].[FurnitureColors] AS [FurnitureColors]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FurnitureMaterials" EntityType="Self.FurnitureMaterials" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[FurnitureMaterials].[FurnitureModelId] AS [FurnitureModelId], 
+[FurnitureMaterials].[MaterialId] AS [MaterialId]
+FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Furniture_FurnitureType" Association="Self.FK_Furniture_FurnitureType">
+            <End Role="FurnitureType" EntitySet="FurnitureType" />
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Room" Association="Self.FK_Furniture_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureColors_Color" Association="Self.FK_FurnitureColors_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="FurnitureColors" EntitySet="FurnitureColors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureColors_Furniture" Association="Self.FK_FurnitureColors_Furniture">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="FurnitureColors" EntitySet="FurnitureColors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureMaterials_Furniture" Association="Self.FK_FurnitureMaterials_Furniture">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="FurnitureMaterials" EntitySet="FurnitureMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureMaterials_Material" Association="Self.FK_FurnitureMaterials_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="FurnitureMaterials" EntitySet="FurnitureMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Furniture" Association="Self.FK_Product_Furniture">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductStatus" Association="Self.FK_Product_ProductStatus">
+            <End Role="ProductStatus" EntitySet="ProductStatus" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Product" Association="Self.FK_Sale_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Product" Association="Self.FK_Warehouse_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FurnitureFabricModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureColors" FromRole="Color" ToRole="FurnitureModel" />
+        </EntityType>
+        <EntityType Name="FurnitureModel">
+          <Key>
+            <PropertyRef Name="FurnitureModelId" />
+          </Key>
+          <Property Name="FurnitureModelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="RoomId" Type="Int32" />
+          <NavigationProperty Name="FurnitureType" Relationship="Self.FK_Furniture_FurnitureType" FromRole="FurnitureModel" ToRole="FurnitureType" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Furniture_Room" FromRole="FurnitureModel" ToRole="Room" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Furniture" FromRole="FurnitureModel" ToRole="Product" />
+          <NavigationProperty Name="Color" Relationship="Self.FurnitureColors" FromRole="FurnitureModel" ToRole="Color" />
+          <NavigationProperty Name="Material" Relationship="Self.FurnitureMaterials" FromRole="FurnitureModel" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="FurnitureType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FurnitureModel" Relationship="Self.FK_Furniture_FurnitureType" FromRole="FurnitureType" ToRole="FurnitureModel" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="MaterialId" />
+          </Key>
+          <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Material1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SerialNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="FurnitureModelId" Type="Int32" Nullable="false" />
+          <Property Name="AssemblyDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FurnitureModel" Relationship="Self.FK_Product_Furniture" FromRole="Product" ToRole="FurnitureModel" />
+          <NavigationProperty Name="ProductStatus" Relationship="Self.FK_Product_ProductStatus" FromRole="Product" ToRole="ProductStatus" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_Sale_Product" FromRole="Product" ToRole="Sale" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Product" FromRole="Product" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="ProductStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductStatus" FromRole="ProductStatus" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FurnitureModel" Relationship="Self.FK_Furniture_Room" FromRole="Room" ToRole="FurnitureModel" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Sale_Product" FromRole="Sale" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Warehouse_Product" FromRole="Warehouse" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Furniture_FurnitureType">
+          <End Role="FurnitureType" Type="Self.FurnitureType" Multiplicity="0..1" />
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="FurnitureModel">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="FurnitureModel">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Furniture">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureModel">
+              <PropertyRef Name="FurnitureModelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="FurnitureModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductStatus">
+          <End Role="ProductStatus" Type="Self.ProductStatus" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FurnitureColors">
+          <End Role="Color" Type="Self.Color" Multiplicity="*" />
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+        </Association>
+        <Association Name="FurnitureMaterials">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="*" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FurnitureFabricEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Color" EntityType="Self.Color" />
+          <EntitySet Name="FurnitureModel" EntityType="Self.FurnitureModel" />
+          <EntitySet Name="FurnitureType" EntityType="Self.FurnitureType" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductStatus" EntityType="Self.ProductStatus" />
+          <EntitySet Name="Room" EntityType="Self.Room" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+          <AssociationSet Name="FK_Furniture_FurnitureType" Association="Self.FK_Furniture_FurnitureType">
+            <End Role="FurnitureType" EntitySet="FurnitureType" />
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Room" Association="Self.FK_Furniture_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Furniture" Association="Self.FK_Product_Furniture">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductStatus" Association="Self.FK_Product_ProductStatus">
+            <End Role="ProductStatus" EntitySet="ProductStatus" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Product" Association="Self.FK_Sale_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Product" Association="Self.FK_Warehouse_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FurnitureColors" Association="Self.FurnitureColors">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FurnitureMaterials" Association="Self.FurnitureMaterials">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <FunctionImport Name="AddProductToWarehouse">
+            <Parameter Name="FurnitureModelId" Mode="In" Type="Int32" />
+            <Parameter Name="AssemblyDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetUniqueSerialNumber" ReturnType="Collection(String)" />
+          <FunctionImport Name="SaleProduct">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="Cost" Mode="In" Type="Double" />
+            <Parameter Name="SaleDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FurnitureFabricModelStoreContainer" CdmEntityContainer="FurnitureFabricEntities">
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="Color1" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FurnitureModel">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.FurnitureModel">
+              <MappingFragment StoreEntitySet="FurnitureModel">
+                <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FurnitureType">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.FurnitureType">
+              <MappingFragment StoreEntitySet="FurnitureType">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+                <ScalarProperty Name="Material1" ColumnName="Material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
+                <ScalarProperty Name="AssemblyDate" ColumnName="AssemblyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStatus">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.ProductStatus">
+              <MappingFragment StoreEntitySet="ProductStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="Room1" ColumnName="Room" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FurnitureColors" TypeName="FurnitureFabricModel.FurnitureColors" StoreEntitySet="FurnitureColors">
+            <EndProperty Name="Color">
+              <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+            </EndProperty>
+            <EndProperty Name="FurnitureModel">
+              <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FurnitureMaterials" TypeName="FurnitureFabricModel.FurnitureMaterials" StoreEntitySet="FurnitureMaterials">
+            <EndProperty Name="FurnitureModel">
+              <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
+            </EndProperty>
+            <EndProperty Name="Material">
+              <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="AddProductToWarehouse" FunctionName="FurnitureFabricModel.Store.AddProductToWarehouse" />
+          <FunctionImportMapping FunctionImportName="GetUniqueSerialNumber" FunctionName="FurnitureFabricModel.Store.GetUniqueSerialNumber" />
+          <FunctionImportMapping FunctionImportName="SaleProduct" FunctionName="FurnitureFabricModel.Store.SaleProduct" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

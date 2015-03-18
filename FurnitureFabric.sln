@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnitureFabric", "FurnitureFabric\FurnitureFabric.csproj", "{924AB1F4-AADD-4FB8-A62A-98EB8D2840D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{13F4DE67-1452-4451-AAA0-E92AEE9E704D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines", "Bussines\Bussines.csproj", "{90969F5F-855E-4489-8403-5CA070E8ABE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{924AB1F4-AADD-4FB8-A62A-98EB8D2840D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924AB1F4-AADD-4FB8-A62A-98EB8D2840D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924AB1F4-AADD-4FB8-A62A-98EB8D2840D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924AB1F4-AADD-4FB8-A62A-98EB8D2840D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F4DE67-1452-4451-AAA0-E92AEE9E704D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F4DE67-1452-4451-AAA0-E92AEE9E704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F4DE67-1452-4451-AAA0-E92AEE9E704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F4DE67-1452-4451-AAA0-E92AEE9E704D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90969F5F-855E-4489-8403-5CA070E8ABE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90969F5F-855E-4489-8403-5CA070E8ABE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90969F5F-855E-4489-8403-5CA070E8ABE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90969F5F-855E-4489-8403-5CA070E8ABE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
