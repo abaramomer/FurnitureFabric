@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Domain
 {
     using System;
     using System.Collections.Generic;

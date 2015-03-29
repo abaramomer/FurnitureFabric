@@ -20,7 +20,7 @@ namespace Data
         }
     
         public int ColorId { get; set; }
-        public string Color1 { get; set; }
+        public string ColorValue { get; set; }
     
         public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }
     }

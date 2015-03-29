@@ -7,21 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data
+namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class Warehouse
     {
-        public Material()
-        {
-            this.FurnitureModel = new HashSet<FurnitureModel>();
-        }
+        public int ProductId { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
     
-        public int MaterialId { get; set; }
-        public string MaterialName { get; set; }
-    
-        public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

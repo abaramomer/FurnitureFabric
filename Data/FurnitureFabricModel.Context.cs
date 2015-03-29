@@ -15,6 +15,7 @@ namespace Data
     using System.Data.Objects;
     using System.Data.Objects.DataClasses;
     using System.Linq;
+    using Domain;
     
     public partial class FurnitureFabricEntities : DbContext
     {

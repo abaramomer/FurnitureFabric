@@ -299,7 +299,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <PropertyRef Name="ColorId" />
           </Key>
           <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Color1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColorName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureColors" FromRole="Color" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="FurnitureModel">
@@ -330,7 +330,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <PropertyRef Name="MaterialId" />
           </Key>
           <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Material1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaterialName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="Product">
@@ -360,7 +360,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <PropertyRef Name="RoomId" />
           </Key>
           <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Room1" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoomName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="FurnitureModel" Relationship="Self.FK_Furniture_Room" FromRole="Room" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="Sale">
@@ -524,7 +524,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <EntityTypeMapping TypeName="FurnitureFabricModel.Color">
               <MappingFragment StoreEntitySet="Color">
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
-                <ScalarProperty Name="Color1" ColumnName="Color" />
+                <ScalarProperty Name="ColorName" ColumnName="Color" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -551,7 +551,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <EntityTypeMapping TypeName="FurnitureFabricModel.Material">
               <MappingFragment StoreEntitySet="Material">
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
-                <ScalarProperty Name="Material1" ColumnName="Material" />
+                <ScalarProperty Name="MaterialName" ColumnName="Material" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -577,8 +577,8 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           <EntitySetMapping Name="Room">
             <EntityTypeMapping TypeName="FurnitureFabricModel.Room">
               <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomName" ColumnName="Room" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="Room1" ColumnName="Room" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

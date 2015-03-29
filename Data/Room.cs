@@ -20,7 +20,7 @@ namespace Data
         }
     
         public int RoomId { get; set; }
-        public string Room1 { get; set; }
+        public string RoomName { get; set; }
     
         public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }
     }
