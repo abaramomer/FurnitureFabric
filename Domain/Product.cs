@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Product : BaseEntity
     {
         public Product()
         {

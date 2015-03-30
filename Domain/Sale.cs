@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Sale
+    public partial class Sale : BaseEntity
     {
         public int SaleId { get; set; }
         public int ProductId { get; set; }

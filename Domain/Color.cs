@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Color
+    public partial class Color : BaseEntity
     {
         public Color()
         {

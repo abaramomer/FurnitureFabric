@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class FurnitureModel
+    public partial class FurnitureModel : BaseEntity
     {
         public FurnitureModel()
         {

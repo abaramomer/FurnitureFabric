@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Room
+    public partial class Room : BaseEntity
     {
         public Room()
         {

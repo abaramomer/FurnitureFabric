@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Warehouse
+    public partial class Warehouse : BaseEntity
     {
         public int ProductId { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }

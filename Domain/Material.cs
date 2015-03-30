@@ -12,7 +12,7 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class Material : BaseEntity
     {
         public Material()
         {
