@@ -331,7 +331,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           </Key>
           <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaterialName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
+          <NavigationProperty Name="FurnitureModel" Relationship="FurnitureFabricModel.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -564,6 +564,14 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
                 <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
                 <ScalarProperty Name="AssemblyDate" ColumnName="AssemblyDate" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="FurnitureFabricModel.Product">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="FurnitureFabricModel.Store.AddProductToWarehouse">
+                  <ScalarProperty Name="AssemblyDate" ParameterName="AssemblyDate" />
+                  <ScalarProperty Name="FurnitureModelId" ParameterName="FurnitureModelId" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductStatus">

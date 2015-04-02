@@ -1,24 +1,40 @@
-﻿using System.Data.Entity;
+﻿using System.Data;
+using System.Data.Entity;
 using Domain;
 
 namespace Data
 {
-    public class Repository
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private FurnitureFabricEntities applicationContext;
+        protected FurnitureFabricEntities ApplicationContext;
 
-        public IDbSet<T> Get<T>() where T : BaseEntity
+        public Repository(FurnitureFabricEntities context)
         {
-            applicationContext = new FurnitureFabricEntities();
+            ApplicationContext = context;
+        }
 
-// ReSharper disable once PossibleNullReferenceException
-            return applicationContext.Set<T>();
+        public virtual IDbSet<T> Get()
+        {
+            return ApplicationContext.Set<T>();
         }
 
         public void SaveAndDispose()
         {
-            applicationContext.SaveChanges();
-            applicationContext.Dispose();
+            ApplicationContext.SaveChanges();
+            ApplicationContext.Dispose();
+        }
+
+        public virtual T InsertOrUpdate(T entity)
+        {
+            ApplicationContext = new FurnitureFabricEntities();
+            ApplicationContext.Set<T>().Add(entity);
+
+            return entity;
+        }
+
+        public void Delete(T entity)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

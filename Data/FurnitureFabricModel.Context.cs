@@ -20,13 +20,13 @@ namespace Data
     public partial class FurnitureFabricEntities : DbContext
     {
         public FurnitureFabricEntities()
-            : base("name=FurnitureFabricEntities")
+            : base("Data Source=MIG21;Initial Catalog=FurnitureFabric;Integrated Security=True")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
     
         public DbSet<Color> Color { get; set; }

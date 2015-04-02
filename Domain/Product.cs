@@ -7,18 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("Product")]
     public partial class Product : BaseEntity
     {
         public Product()
         {
             this.Sale = new HashSet<Sale>();
         }
-    
+        
+        [Key]
         public int ProductId { get; set; }
         public string SerialNumber { get; set; }
         public int StatusId { get; set; }
@@ -28,6 +33,5 @@ namespace Domain
         public virtual FurnitureModel FurnitureModel { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }
         public virtual ICollection<Sale> Sale { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
     }
 }

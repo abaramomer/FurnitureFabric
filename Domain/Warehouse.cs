@@ -7,15 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("Warehouse")]
     public partial class Warehouse : BaseEntity
     {
+        [Key, ForeignKey("Product")]
         public int ProductId { get; set; }
-        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public Nullable<DateTime> UpdateDate { get; set; }
     
         public virtual Product Product { get; set; }
     }

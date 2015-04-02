@@ -4,16 +4,11 @@ namespace Bussines.Services
 {
     public abstract class BaseService
     {
-        protected Repository Repository;
+        protected UnitOfWork UnitOfWork;
 
         protected BaseService()
         {
-            Repository = new Repository();
-        }
-
-        protected void Commit()
-        {
-            Repository.SaveAndDispose();
+            UnitOfWork = new UnitOfWork();
         }
     }
 }

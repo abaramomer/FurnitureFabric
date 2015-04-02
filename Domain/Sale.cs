@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("Sale")]
     public partial class Sale : BaseEntity
     {
+        [Key]
         public int SaleId { get; set; }
         public int ProductId { get; set; }
         public System.DateTime SaleDate { get; set; }

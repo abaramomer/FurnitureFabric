@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("FurnitureModel")]
     public partial class FurnitureModel : BaseEntity
     {
         public FurnitureModel()
@@ -21,6 +25,7 @@ namespace Domain
             this.Material = new HashSet<Material>();
         }
     
+        [Key]
         public int FurnitureModelId { get; set; }
         public string Name { get; set; }
         public string AdditionalInfo { get; set; }

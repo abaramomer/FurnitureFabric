@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("Room")]
     public partial class Room : BaseEntity
     {
         public Room()
@@ -19,7 +23,9 @@ namespace Domain
             this.FurnitureModel = new HashSet<FurnitureModel>();
         }
     
+        [Key]
         public int RoomId { get; set; }
+
         public string RoomName { get; set; }
     
         public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }

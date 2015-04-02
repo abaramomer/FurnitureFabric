@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     
+    [Table("Color")]
     public partial class Color : BaseEntity
     {
         public Color()
@@ -19,6 +23,7 @@ namespace Domain
             this.FurnitureModel = new HashSet<FurnitureModel>();
         }
     
+        [Key]
         public int ColorId { get; set; }
         public string ColorName { get; set; }
     
