@@ -16,13 +16,13 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("FurnitureModel")]
-    public partial class FurnitureModel : BaseEntity
+    public partial class FurnitureModel : Entity
     {
         public FurnitureModel()
         {
-            this.Product = new HashSet<Product>();
-            this.Color = new HashSet<Color>();
-            this.Material = new HashSet<Material>();
+            this.Products = new HashSet<Product>();
+            this.Colors = new HashSet<Color>();
+            this.Materials = new HashSet<Material>();
         }
     
         [Key]
@@ -34,8 +34,8 @@ namespace Domain
     
         public virtual FurnitureType FurnitureType { get; set; }
         public virtual Room Room { get; set; }
-        public virtual ICollection<Product> Product { get; set; }
-        public virtual ICollection<Color> Color { get; set; }
-        public virtual ICollection<Material> Material { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Color> Colors { get; set; }
+        public virtual ICollection<Material> Materials { get; set; }
     }
 }

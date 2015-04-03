@@ -27,7 +27,6 @@ namespace Data
             MaterialRepository = new Repository<Material>(context);
             RoomRepository = new Repository<Room>(context);
             SaleRepository = new Repository<Sale>(context);
-
         }
 
         public void Commit()

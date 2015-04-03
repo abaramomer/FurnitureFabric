@@ -26,7 +26,25 @@ namespace Data
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<FurnitureModel>()
+                .HasMany(i => i.Colors)
+                .WithMany(s => s.FurnitureModels)
+                .Map(m =>
+                {
+                    m.MapLeftKey("FurnitureModelId");
+                    m.MapRightKey("ColorId");
+                    m.ToTable("FurnitureModelColors");
+                });
+
+            modelBuilder.Entity<FurnitureModel>()
+                .HasMany(i => i.Materials)
+                .WithMany(s => s.FurnitureModels)
+                .Map(m =>
+                {
+                    m.MapLeftKey("FurnitureModelId");
+                    m.MapRightKey("MaterialId");
+                    m.ToTable("FurnitureMaterials");
+                });
         }
     
         public DbSet<Color> Color { get; set; }

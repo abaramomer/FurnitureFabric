@@ -16,7 +16,7 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("Sale")]
-    public partial class Sale : BaseEntity
+    public partial class Sale : Entity
     {
         [Key]
         public int SaleId { get; set; }

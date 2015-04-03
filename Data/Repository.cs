@@ -4,32 +4,31 @@ using Domain;
 
 namespace Data
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity
+    public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected FurnitureFabricEntities ApplicationContext;
+        protected FurnitureFabricEntities Context;
 
         public Repository(FurnitureFabricEntities context)
         {
-            ApplicationContext = context;
+            Context = context;
         }
 
         public virtual IDbSet<T> Get()
         {
-            return ApplicationContext.Set<T>();
-        }
-
-        public void SaveAndDispose()
-        {
-            ApplicationContext.SaveChanges();
-            ApplicationContext.Dispose();
+            return Context.Set<T>();
         }
 
         public virtual T InsertOrUpdate(T entity)
         {
-            ApplicationContext = new FurnitureFabricEntities();
-            ApplicationContext.Set<T>().Add(entity);
+            Context = new FurnitureFabricEntities();
+            Context.Set<T>().Add(entity);
 
             return entity;
+        }
+
+        internal void SetContext(FurnitureFabricEntities context)
+        {
+            Context = context;
         }
 
         public void Delete(T entity)

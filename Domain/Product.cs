@@ -16,11 +16,11 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("Product")]
-    public partial class Product : BaseEntity
+    public partial class Product : Entity
     {
         public Product()
         {
-            this.Sale = new HashSet<Sale>();
+            this.Sales = new HashSet<Sale>();
         }
         
         [Key]
@@ -32,6 +32,6 @@ namespace Domain
     
         public virtual FurnitureModel FurnitureModel { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }
-        public virtual ICollection<Sale> Sale { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

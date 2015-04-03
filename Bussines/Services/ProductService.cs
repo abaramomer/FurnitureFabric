@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Bussines.Services
@@ -13,8 +12,9 @@ namespace Bussines.Services
 
         public List<string> GetAllProducts()
         {
-            var x = UnitOfWork.FurnitureModelRepository.Get().ToList();
-            var xx = x.First().Color.First();
+            var y = UnitOfWork.SaleRepository.Get().Where(yy => yy.Cost > 0);
+            var x = UnitOfWork.FurnitureModelRepository.Get().Where(zz => zz.TypeId != null).First();
+            var xx = x.Colors.First();
             UnitOfWork.Commit();
 
             return null;

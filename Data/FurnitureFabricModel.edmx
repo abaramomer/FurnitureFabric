@@ -300,7 +300,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           </Key>
           <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ColorName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="FurnitureModel" Relationship="Self.FurnitureColors" FromRole="Color" ToRole="FurnitureModel" />
+          <NavigationProperty Name="FurnitureModels" Relationship="Self.FurnitureColors" FromRole="Color" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="FurnitureModel">
           <Key>
@@ -313,9 +313,9 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           <Property Name="RoomId" Type="Int32" />
           <NavigationProperty Name="FurnitureType" Relationship="Self.FK_Furniture_FurnitureType" FromRole="FurnitureModel" ToRole="FurnitureType" />
           <NavigationProperty Name="Room" Relationship="Self.FK_Furniture_Room" FromRole="FurnitureModel" ToRole="Room" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Furniture" FromRole="FurnitureModel" ToRole="Product" />
-          <NavigationProperty Name="Color" Relationship="Self.FurnitureColors" FromRole="FurnitureModel" ToRole="Color" />
-          <NavigationProperty Name="Material" Relationship="Self.FurnitureMaterials" FromRole="FurnitureModel" ToRole="Material" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Furniture" FromRole="FurnitureModel" ToRole="Product" />
+          <NavigationProperty Name="Colors" Relationship="Self.FurnitureColors" FromRole="FurnitureModel" ToRole="Color" />
+          <NavigationProperty Name="Materials" Relationship="Self.FurnitureMaterials" FromRole="FurnitureModel" ToRole="Material" />
         </EntityType>
         <EntityType Name="FurnitureType">
           <Key>
@@ -323,7 +323,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           </Key>
           <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="FurnitureModel" Relationship="Self.FK_Furniture_FurnitureType" FromRole="FurnitureType" ToRole="FurnitureModel" />
+          <NavigationProperty Name="FurnitureModels" Relationship="Self.FK_Furniture_FurnitureType" FromRole="FurnitureType" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -331,7 +331,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           </Key>
           <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaterialName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="FurnitureModel" Relationship="FurnitureFabricModel.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
+          <NavigationProperty Name="FurnitureModels" Relationship="FurnitureFabricModel.FurnitureMaterials" FromRole="Material" ToRole="FurnitureModel" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -371,7 +371,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Cost" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Sale_Product" FromRole="Sale" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Sale_Product" FromRole="Sale" ToRole="Product" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -379,7 +379,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="UpdateDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Warehouse_Product" FromRole="Warehouse" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Warehouse_Product" FromRole="Warehouse" ToRole="Product" />
         </EntityType>
         <Association Name="FK_Furniture_FurnitureType">
           <End Role="FurnitureType" Type="Self.FurnitureType" Multiplicity="0..1" />

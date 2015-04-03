@@ -11,7 +11,7 @@ namespace Data
 
         public void AddProductToWarehouse(int furnitureModelId, DateTime assemblyDate)
         {
-            ApplicationContext.AddProductToWarehouse(furnitureModelId, assemblyDate);
+            Context.AddProductToWarehouse(furnitureModelId, assemblyDate);
         }
     }
 }

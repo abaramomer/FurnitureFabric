@@ -14,19 +14,20 @@ namespace Domain
 {
     using System;
     using System.Collections.Generic;
-    
+
     [Table("Color")]
-    public partial class Color : BaseEntity
+    public partial class Color : Entity
     {
         public Color()
         {
-            this.FurnitureModel = new HashSet<FurnitureModel>();
+            this.FurnitureModels = new HashSet<FurnitureModel>();
         }
     
-        [Key]
         public int ColorId { get; set; }
+
+        [Column("Color")]
         public string ColorName { get; set; }
     
-        public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }
+        public virtual ICollection<FurnitureModel> FurnitureModels { get; set; }
     }
 }

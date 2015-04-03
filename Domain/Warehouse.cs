@@ -16,7 +16,7 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("Warehouse")]
-    public partial class Warehouse : BaseEntity
+    public partial class Warehouse : Entity
     {
         [Key, ForeignKey("Product")]
         public int ProductId { get; set; }

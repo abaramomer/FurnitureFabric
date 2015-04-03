@@ -16,17 +16,17 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("ProductStatus")]
-    public partial class ProductStatus : BaseEntity
+    public partial class ProductStatus : Entity
     {
         public ProductStatus()
         {
-            this.Product = new HashSet<Product>();
+            this.Products = new HashSet<Product>();
         }
     
         [Key]
         public int StatusId { get; set; }
         public string Status { get; set; }
     
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

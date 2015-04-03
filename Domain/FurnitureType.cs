@@ -16,17 +16,17 @@ namespace Domain
     using System.Collections.Generic;
     
     [Table("FurnitureType")]
-    public partial class FurnitureType : BaseEntity
+    public partial class FurnitureType : Entity
     {
         public FurnitureType()
         {
-            this.FurnitureModel = new HashSet<FurnitureModel>();
+            this.FurnitureModels = new HashSet<FurnitureModel>();
         }
     
         [Key]
         public int TypeId { get; set; }
         public string Type { get; set; }
     
-        public virtual ICollection<FurnitureModel> FurnitureModel { get; set; }
+        public virtual ICollection<FurnitureModel> FurnitureModels { get; set; }
     }
 }
