@@ -1,12 +1,20 @@
 ﻿using System.Web.Mvc;
+using Bussines.Services;
 
 namespace FurnitureFabric.Controllers
 {
-    public class HomeController : Controller
+    public class ClientController : Controller
     {
+        private readonly ClientService clientService;
+        public ClientController()
+        {
+            clientService = new ClientService();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var model = clientService.RandomModels(3);
+            return View(model);
         }
     }
 }
