@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines", "Bussines\Bussin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5912FD31-034D-4D97-AB3E-30BA93A8AD89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportTools", "ImportTools\ImportTools.csproj", "{00AE18A1-C077-492C-A71B-5523A721654F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5912FD31-034D-4D97-AB3E-30BA93A8AD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5912FD31-034D-4D97-AB3E-30BA93A8AD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5912FD31-034D-4D97-AB3E-30BA93A8AD89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AE18A1-C077-492C-A71B-5523A721654F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AE18A1-C077-492C-A71B-5523A721654F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AE18A1-C077-492C-A71B-5523A721654F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AE18A1-C077-492C-A71B-5523A721654F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
