@@ -138,4 +138,19 @@
   <data name="ClientMain_ListName" xml:space="preserve">
     <value>Our production</value>
   </data>
+  <data name="MainMenu_ModelList" xml:space="preserve">
+    <value>Model List</value>
+  </data>
+  <data name="MainMenu_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="MainMenu_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="MainMenu_Warehouse" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="MainMenu_Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
 </root>

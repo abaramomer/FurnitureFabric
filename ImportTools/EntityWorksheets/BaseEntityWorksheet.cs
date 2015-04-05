@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Domain;
+﻿using Domain;
 
 namespace ImportTools.EntityWorksheets
 {
@@ -8,5 +7,7 @@ namespace ImportTools.EntityWorksheets
         public EntityCell[] Cells;
 
         public abstract T MapToEntity(string[] cellValues);
+
+        //TODO: Create method to resolve a real value from string cell value
     }
 }

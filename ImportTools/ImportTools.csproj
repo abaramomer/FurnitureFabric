@@ -42,25 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EcxcelWorksheetReader.cs" />
+    <Compile Include="EntityWorksheetReaders\ExcelWorksheetReader.cs" />
     <Compile Include="EntityCell.cs" />
+    <Compile Include="EntityWorksheetReaders\MaterialWorksheetReader.cs" />
     <Compile Include="EntityWorksheets\BaseEntityWorksheet.cs" />
     <Compile Include="EntityWorksheets\FurnitureModelWorksheet.cs" />
+    <Compile Include="EntityWorksheets\MaterialWorksheet.cs" />
     <Compile Include="EntityWorksheets\ProductWorksheet.cs" />
     <Compile Include="ExcelImportService.cs" />
     <Compile Include="Exceptions\ImportToolException.cs" />
     <Compile Include="Exceptions\IncorrectHeaderException.cs" />
     <Compile Include="Extensions\ExcelWorksheetExtensions.cs" />
-    <Compile Include="FurnitureModelWorksheetReader.cs" />
-    <Compile Include="IExcelWorksheetReader.cs" />
-    <Compile Include="WorksheetReader.cs" />
+    <Compile Include="EntityWorksheetReaders\IEntityWorksheetReader.cs" />
+    <Compile Include="EntityWorksheetReaders\WorksheetReader.cs" />
+    <Compile Include="EntityWorksheetReaders\FurnitureModelWorksheetReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{13f4de67-1452-4451-aaa0-e92aee9e704d}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{5912fd31-034d-4d97-ab3e-30ba93a8ad89}</Project>
       <Name>Domain</Name>
@@ -69,9 +67,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EntityWorksheetReaders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,7 +2,7 @@
 using ImportTools.EntityWorksheets;
 using OfficeOpenXml;
 
-namespace ImportTools
+namespace ImportTools.EntityWorksheetReaders
 {
     internal class FurnitureModelWorksheetReader : ExcelWorksheetReader<FurnitureModel, FurnitureModelWorksheet>
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Bussines.ViewModels.FurnitureModel;
+using Business.ViewModels.FurnitureModel;
 using Domain;
 
-namespace Bussines.Mappings
+namespace Business.Mappings
 {
     public class FurnitureModelMappings
     {

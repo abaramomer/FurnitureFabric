@@ -1,18 +1,41 @@
 ﻿using System.Configuration;
+using System.IO;
 using System.Web;
 
 namespace FurnitureFabric.Helpers
 {
-    public class ImageHelper
+    public class FileHelper
     {
-        private static string imageFormat = "png";
+        private const string ImageFormat = "png";
 
         public static string FurnitureModelImagePath = ConfigurationManager.AppSettings["FurnitureModelImagePath"];
 
-        public static void Save(int id, HttpPostedFileBase image, HttpServerUtilityBase server)
+        public static string SaveFurnitureImage(int id, HttpPostedFileBase image, HttpServerUtilityBase server)
         {
-            string imagePath = string.Format("{0}/{1}.{2}", FurnitureModelImagePath, id, imageFormat);
-            image.SaveAs(server.MapPath(imagePath));
+            string imagePath = string.Format("{0}/{1}.{2}", FurnitureModelImagePath, id, ImageFormat);
+
+            return SaveAs(server, image, imagePath);
+        }
+
+        public static string SaveExcelFile(HttpPostedFileBase file, HttpServerUtilityBase server)
+        {
+            string localPath = string.Format("{0}/{1}", "/Excel", file.FileName);
+
+            return SaveAs(server, file, localPath);
+        }
+
+        public static void DeleteFile(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            fileInfo.Delete();
+        }
+
+        private static string SaveAs(HttpServerUtilityBase serverUtility, HttpPostedFileBase file, string localPath)
+        {
+            var path = serverUtility.MapPath(localPath);
+            file.SaveAs(path);
+
+            return path;
         }
     }
 }

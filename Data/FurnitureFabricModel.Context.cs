@@ -20,7 +20,7 @@ namespace Data
     public partial class FurnitureFabricEntities : DbContext
     {
         public FurnitureFabricEntities()
-            : base("Data Source=MIG21;Initial Catalog=FurnitureFabric;Integrated Security=True")
+            : base("Data Source=fedyukovichi;Initial Catalog=FurnitureFabric;Integrated Security=True")
         {
         }
     

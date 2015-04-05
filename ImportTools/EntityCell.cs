@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ImportTools
+﻿namespace ImportTools
 {
     internal class EntityCell
     {

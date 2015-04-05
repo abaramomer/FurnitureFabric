@@ -1,6 +1,6 @@
 ﻿using Data;
 
-namespace Bussines.Services
+namespace Business.Services
 {
     public abstract class BaseService
     {

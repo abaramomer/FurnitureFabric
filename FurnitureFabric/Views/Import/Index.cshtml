@@ -1,0 +1,21 @@
+﻿@model Bussines.ViewModels.ImportViewModels.ImportViewModel
+
+<div class="main-content">
+    @using (Html.BeginForm("Index", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h2 class="text-center">Select entity</h2>
+        
+        @Html.DropDownListFor(x => x.SelectedEntity, Model.ImportedEntities, new { @class = "form-control" })
+        
+        <br/>
+        <input type="file" name="importedFile" />
+
+        <br />
+        <input style="width:200px;" class="btn btn-primary btn-lg center-block" type="submit" value="Import" />
+    }
+
+    @if (Model.ImportResultViewModel != null)
+    {
+        @Html.Partial("ImportResultView", Model.ImportResultViewModel)
+    }
+</div>

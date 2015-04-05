@@ -1,0 +1,31 @@
+﻿@using FurnitureFabric.Properties
+
+<div class="masthead">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Creations/Latest/">@Resources.Header_SiteName</a>
+            @if (Request.IsAuthenticated)
+            {
+                <a style="margin-left:20px;" href="/User/Profile/" class="navbar-btn btn btn-default">@Resources.Header_Profile</a>
+                <a style="margin-left:10px;" href="/User/Logout/" class="navbar-btn btn btn-default">@Resources.Header_Exit</a>
+            }
+            else
+            {
+                <a style="margin-left:20px;" href="/User/Login/" class="navbar-btn btn btn-default">@Resources.Header_Login</a>
+                <a style="margin-left:20px;" href="/User/Registration/" class="navbar-btn btn btn-default">@Resources.Header_Registration</a>
+            }
+        </div>
+        <div class="collapse navbar-collapse">
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">@Resources.Header_Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<div class="jumbotron">
+    <a href="/Creation/Add/"><img src="" /></a>
+</div>

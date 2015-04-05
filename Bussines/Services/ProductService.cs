@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Bussines.Services
+namespace Business.Services
 {
     public class ProductService : BaseService
     {

@@ -20,7 +20,6 @@ namespace Data
 
         public virtual T InsertOrUpdate(T entity)
         {
-            Context = new FurnitureFabricEntities();
             Context.Set<T>().Add(entity);
 
             return entity;

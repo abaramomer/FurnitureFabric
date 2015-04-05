@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ImportTools.Exceptions
 {
-    internal class IncorrectHeaderException : ImportToolException
+    public class IncorrectHeaderException : ImportToolException
     {
         public IncorrectHeaderException(IEnumerable<string> headerColumns) : base("")
         {

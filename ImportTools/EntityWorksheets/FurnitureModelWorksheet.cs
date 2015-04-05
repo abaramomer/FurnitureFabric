@@ -3,7 +3,7 @@ using Domain;
 
 namespace ImportTools.EntityWorksheets
 {
-    internal class FurnitureModelWorksheet : BaseEntityWorksheet<FurnitureModel>, IExcelWorksheetReader
+    internal class FurnitureModelWorksheet : BaseEntityWorksheet<FurnitureModel>
     {
         public FurnitureModelWorksheet()
         {

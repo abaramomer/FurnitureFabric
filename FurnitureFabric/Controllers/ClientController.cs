@@ -1,11 +1,12 @@
 ﻿using System.Web.Mvc;
-using Bussines.Services;
+using Business.Services;
 
 namespace FurnitureFabric.Controllers
 {
     public class ClientController : Controller
     {
         private readonly ClientService clientService;
+
         public ClientController()
         {
             clientService = new ClientService();

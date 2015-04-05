@@ -152,7 +152,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ClientViewModels\MainMenuViewModel.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,8 +205,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Shared\_MenuView.cshtml" />
+    <Content Include="Views\Shared\_HeaderView.cshtml" />
     <Content Include="Views\Client\ShortFurnitureModel.cshtml" />
+    <Content Include="Views\Shared\_MenuView.cshtml" />
+    <Content Include="Views\Import\Index.cshtml" />
+    <Content Include="Views\Import\ImportResultView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -216,9 +221,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bussines\Bussines.csproj">
+    <ProjectReference Include="..\Bussines\Business.csproj">
       <Project>{90969f5f-855e-4489-8403-5ca070e8abe3}</Project>
-      <Name>Bussines</Name>
+      <Name>Business</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

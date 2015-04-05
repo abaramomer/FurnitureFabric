@@ -2,7 +2,7 @@
 
 namespace ImportTools.Exceptions
 {
-    internal class ImportToolException : Exception
+    public class ImportToolException : Exception
     {
         public string ImportToolExceptionMessage { get; set; }
 

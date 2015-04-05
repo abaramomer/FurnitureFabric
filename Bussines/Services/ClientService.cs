@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bussines.Mappings;
-using Bussines.ViewModels.FurnitureModel;
+using Business.ViewModels.FurnitureModel;
+using Business.Mappings;
 using Domain;
 
-namespace Bussines.Services
+namespace Business.Services
 {
     public class ClientService : BaseService
     {

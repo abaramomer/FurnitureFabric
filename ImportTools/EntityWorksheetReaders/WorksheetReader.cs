@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Domain;
+﻿using Domain;
 using ImportTools.EntityWorksheets;
 
-namespace ImportTools
+namespace ImportTools.EntityWorksheetReaders
 {
     internal abstract class WorksheetReader<TEntity, TEntityWorksheet> 
         where TEntity : Entity 
@@ -14,7 +13,5 @@ namespace ImportTools
         {
             EntityWorksheet = entityWorksheet;
         }
-
-        public abstract List<TEntity> Read();
     }
 }

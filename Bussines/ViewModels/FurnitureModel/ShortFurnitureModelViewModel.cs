@@ -1,4 +1,4 @@
-﻿namespace Bussines.ViewModels.FurnitureModel
+﻿namespace Business.ViewModels.FurnitureModel
 {
     public class ShortFurnitureModelViewModel
     {

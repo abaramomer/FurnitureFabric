@@ -1,4 +1,5 @@
-﻿@using FurnitureFabric.Properties
+﻿@using FurnitureFabric.ClientViewModels
+@using FurnitureFabric.Properties
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +14,14 @@
 </head>
 <body style="padding-bottom:0;">
     <div class="container-narrow">
-        @Html.Partial("_MenuView")
+        @Html.Partial("_HeaderView")
         <div id="body" style="min-height: 570px;">
-            @RenderBody()
+            <div id="content">
+                <div style="text-align:center;" class="menu-list">
+                    @Html.Partial("_MenuView", new MainMenuViewModel())
+                </div>
+                @RenderBody()
+            </div>
         </div>
         <footer id="footer">
             <div style="margin:20px 0 0 0;" class="well">

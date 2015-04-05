@@ -2,16 +2,14 @@
 using System.Linq;
 using Domain;
 using ImportTools.EntityWorksheets;
-using ImportTools.Exceptions;
 using ImportTools.Extensions;
 using OfficeOpenXml;
 
-namespace ImportTools
+namespace ImportTools.EntityWorksheetReaders
 {
-    internal class ExcelWorksheetReader<TEntity, TEntityWorksheet> : WorksheetReader<TEntity, TEntityWorksheet>
+    internal class ExcelWorksheetReader<TEntity, TEntityWorksheet> : WorksheetReader<TEntity, TEntityWorksheet>, IEntityWorksheetReader
         where TEntity : Entity
-        where TEntityWorksheet : BaseEntityWorksheet<TEntity>,
-        IExcelWorksheetReader
+        where TEntityWorksheet : BaseEntityWorksheet<TEntity>
     {
         protected ExcelWorksheet ExcelWorksheet;
         private readonly int worksheetColumnsCount;
@@ -35,12 +33,12 @@ namespace ImportTools
             }
         }
 
-        public override List<TEntity> Read()
+        public List<Entity> Read()
         {
             int rowNumber = StartRowReadIndex; 
             ValidateFirstRowForHeader();
 
-            List<TEntity> entities = new List<TEntity>();
+            var entities = new List<Entity>();
             string[] values = GetEntityRow(rowNumber);
             
             while (!IsLastRow(values))
