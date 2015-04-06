@@ -1,23 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Business.Extensions;
+using Business.Mappings;
+using Business.ViewModels.ProductModels;
+using Domain;
 
 namespace Business.Services
 {
     public class ProductService : BaseService
     {
-        public ProductService()
+        public ProductGridViewModel GetAllProducts(ProductFilterViewModel filterViewModel)
         {
-            
-        }
+            var products =
+                UnitOfWork.ProductRepository.Get().Where(x => x.FurnitureModelId == filterViewModel.FurnitureModelId);
+            var gridViewModel = new ProductGridViewModel();
+            foreach (var product in products)
+            {
+                gridViewModel.ListItems.Add(ProductMappings.MapProductListToProductListItemViewModel(product));
+            }
 
-        public List<string> GetAllProducts()
-        {
-            var y = UnitOfWork.SaleRepository.Get().Where(yy => yy.Cost > 0);
-            var x = UnitOfWork.FurnitureModelRepository.Get().Where(zz => zz.TypeId != null).First();
-            var xx = x.Colors.First();
-            UnitOfWork.Commit();
+            gridViewModel.FilterViewModel = filterViewModel;
 
-            return null;
+            return gridViewModel;
         }
     }
 }

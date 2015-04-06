@@ -13,7 +13,8 @@
         <EntityTypeShape EntityType="FurnitureFabricModel.ProductStatus" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FurnitureFabricModel.Room" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FurnitureFabricModel.Sale" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FurnitureFabricModel.Warehouse" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FurnitureFabricModel.
+                         ouse" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="FurnitureFabricModel.FK_Furniture_FurnitureType" ManuallyRouted="false" />
         <AssociationConnector Association="FurnitureFabricModel.FK_Furniture_Room" ManuallyRouted="false" />
         <AssociationConnector Association="FurnitureFabricModel.FK_Product_Furniture" ManuallyRouted="false" />

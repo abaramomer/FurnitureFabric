@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Objects;
+using System.Linq;
 using Domain;
 
 namespace Data
@@ -12,6 +14,11 @@ namespace Data
         public void AddProductToWarehouse(int furnitureModelId, DateTime assemblyDate)
         {
             Context.AddProductToWarehouse(furnitureModelId, assemblyDate);
+        }
+
+        public IQueryable<Product> GetProducts(int furnitureModelId, DateTime assemblyDate, int? productStatusId)
+        {
+            return null; // Context.GetProducts(furnitureModelId, assemblyDate, productStatusId);
         }
     }
 }

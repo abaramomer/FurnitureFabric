@@ -1,6 +1,7 @@
-﻿@using Bussines.ViewModels.ImportViewModels
-@model ImportResultViewModel
-<h3>
-    @Model.ImportResult.ToString()
-</h3>
-<span>@Model.FormattedInfoMessage</span>
+﻿@model Business.ViewModels.ImportViewModels.ImportResultViewModel
+<div class="text-center">
+    <h3>
+        @Model.ImportResult.ToString()
+    </h3>
+    <span>@Model.FormattedInfoMessage</span>
+</div>
