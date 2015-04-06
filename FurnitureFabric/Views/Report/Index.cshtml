@@ -1,3 +1,16 @@
-﻿@using ReportViewerForMvc
+﻿@model Business.ViewModels.ReportViewModels.ReportViewModel
+@using ReportViewerForMvc
 
-@Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+@{
+    var report = ViewData["Report"];
+}
+<div class="main-content">
+    @Html.Partial("ReportItems", Model.ReportList)
+</div>
+<br/>
+<div class="report-content">
+    @if (Model.ShowReport)
+    {
+        @Html.ReportViewer(report as Microsoft.Reporting.WebForms.ReportViewer);
+    }
+</div>

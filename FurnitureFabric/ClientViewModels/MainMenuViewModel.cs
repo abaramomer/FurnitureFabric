@@ -11,10 +11,10 @@ namespace FurnitureFabric.ClientViewModels
         {
             Items = new Dictionary<string, string>
             {
-                { Resources.MainMenu_ModelList, ""},
+                { Resources.MainMenu_ModelList, "/Client"},
                 { Resources.MainMenu_Warehouse, "/Warehouse"},
                 { Resources.MainMenu_Import, "/Import"},
-                { Resources.MainMenu_Reports, "/Reports"},
+                { Resources.MainMenu_Reports, "/Report"},
             };
         }
     }

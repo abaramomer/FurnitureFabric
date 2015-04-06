@@ -1,21 +1,27 @@
-﻿using System.Data;
-using System.Web.Mvc;
-using Microsoft.Reporting.WebForms;
+﻿using System.Web.Mvc;
+using Business.Services;
+using FurnitureFabric.Helpers;
 
 namespace FurnitureFabric.Controllers
 {
     public class ReportController : Controller
     {
-        public ActionResult Index()
+        private readonly ReportService reportService;
+        public ReportController()
         {
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportService = new ReportService();
+        }
 
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportTemplates\Report.rdlc";
-            ReportDataSource dataSource = new ReportDataSource("Report");
-            reportViewer.LocalReport.DataSources.Add(dataSource);
-            ViewBag.ReportViewer = reportViewer;
-            return View();
+        public ActionResult Index(int? id)
+        {
+            var viewModel = reportService.GetReport(id);
+
+            if (viewModel.ShowReport)
+            {
+                ViewData["Report"] = ReportViewerHelper.GetReportViewer(viewModel.CurrentReport);
+            }
+
+            return View(viewModel);
         }
     }
 }

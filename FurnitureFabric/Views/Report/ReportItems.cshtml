@@ -1,0 +1,9 @@
+﻿@model List<Business.ViewModels.ReportViewModels.ReportItemViewModel>
+
+<h3>Choose a report from list</h3>
+@foreach(var reportItem in Model)
+{
+    <div class="menu-item">
+        <a href="/Report/Index/@reportItem.ReportId">@reportItem.ReportName</a>
+    </div>
+}

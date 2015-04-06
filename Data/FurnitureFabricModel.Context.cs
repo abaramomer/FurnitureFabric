@@ -20,7 +20,7 @@ namespace Data
     public partial class FurnitureFabricEntities : DbContext
     {
         public FurnitureFabricEntities()
-            : base("")
+            : base("Data Source=MIG21;Initial Catalog=FurnitureFabric;Integrated Security=True")
         {
         }
 
@@ -91,22 +91,5 @@ namespace Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaleProduct", productIdParameter, costParameter, saleDateParameter);
         }
-    
-        //public virtual ObjectResult<GetProducts_Result> GetProducts(Nullable<int> furnitureModelId, Nullable<System.DateTime> assemblyDate, Nullable<int> statusId)
-        //{
-        //    var furnitureModelIdParameter = furnitureModelId.HasValue ?
-        //        new ObjectParameter("FurnitureModelId", furnitureModelId) :
-        //        new ObjectParameter("FurnitureModelId", typeof(int));
-    
-        //    var assemblyDateParameter = assemblyDate.HasValue ?
-        //        new ObjectParameter("AssemblyDate", assemblyDate) :
-        //        new ObjectParameter("AssemblyDate", typeof(System.DateTime));
-    
-        //    var statusIdParameter = statusId.HasValue ?
-        //        new ObjectParameter("StatusId", statusId) :
-        //        new ObjectParameter("StatusId", typeof(int));
-    
-        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProducts_Result>("GetProducts", furnitureModelIdParameter, assemblyDateParameter, statusIdParameter);
-        //}
     }
 }

@@ -4,13 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FurnitureFabricModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FurnitureFabricModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="ColorId" />
           </Key>
           <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Color" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureColors' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FurnitureColors">
+          <Key>
+            <PropertyRef Name="FurnitureModelId" />
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="FurnitureModelId" Type="int" Nullable="false" />
+          <Property Name="ColorId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureMaterials' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -110,6 +120,30 @@ warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureMaterials' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FurnitureColors_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="FurnitureColors" Type="Self.FurnitureColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorId" />
+            </Principal>
+            <Dependent Role="FurnitureColors">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FurnitureColors_Furniture">
+          <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
+          <End Role="FurnitureColors" Type="Self.FurnitureColors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FurnitureModel">
+              <PropertyRef Name="FurnitureModelId" />
+            </Principal>
+            <Dependent Role="FurnitureColors">
+              <PropertyRef Name="FurnitureModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FurnitureMaterials_Furniture">
           <End Role="FurnitureModel" Type="Self.FurnitureModel" Multiplicity="1" />
           <End Role="FurnitureMaterials" Type="Self.FurnitureMaterials" Multiplicity="*" />
@@ -186,11 +220,6 @@ warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureMaterials' does not h
           <Parameter Name="FurnitureModelId" Type="int" Mode="In" />
           <Parameter Name="AssemblyDate" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="GetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FurnitureModelId" Type="int" Mode="In" />
-          <Parameter Name="AssemblyDate" Type="datetime" Mode="In" />
-          <Parameter Name="StatusId" Type="int" Mode="In" />
-        </Function>
         <Function Name="GetUniqueSerialNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SaleProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductId" Type="int" Mode="In" />
@@ -207,11 +236,21 @@ warning 6002: The table/view 'FurnitureFabric.dbo.FurnitureMaterials' does not h
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FurnitureColors" EntityType="Self.FurnitureColors" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>
+              SELECT
+              [FurnitureColors].[FurnitureModelId] AS [FurnitureModelId],
+              [FurnitureColors].[ColorId] AS [ColorId]
+              FROM [dbo].[FurnitureColors] AS [FurnitureColors]
+            </DefiningQuery>
+          </EntitySet>
           <EntitySet Name="FurnitureMaterials" EntityType="Self.FurnitureMaterials" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[FurnitureMaterials].[FurnitureModelId] AS [FurnitureModelId], 
-[FurnitureMaterials].[MaterialId] AS [MaterialId]
-FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
+            <DefiningQuery>
+              SELECT
+              [FurnitureMaterials].[FurnitureModelId] AS [FurnitureModelId],
+              [FurnitureMaterials].[MaterialId] AS [MaterialId]
+              FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]
+            </DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Furniture_FurnitureType" Association="Self.FK_Furniture_FurnitureType">
             <End Role="FurnitureType" EntitySet="FurnitureType" />
@@ -220,6 +259,14 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           <AssociationSet Name="FK_Furniture_Room" Association="Self.FK_Furniture_Room">
             <End Role="Room" EntitySet="Room" />
             <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureColors_Color" Association="Self.FK_FurnitureColors_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="FurnitureColors" EntitySet="FurnitureColors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FurnitureColors_Furniture" Association="Self.FK_FurnitureColors_Furniture">
+            <End Role="FurnitureModel" EntitySet="FurnitureModel" />
+            <End Role="FurnitureColors" EntitySet="FurnitureColors" />
           </AssociationSet>
           <AssociationSet Name="FK_FurnitureMaterials_Furniture" Association="Self.FK_FurnitureMaterials_Furniture">
             <End Role="FurnitureModel" EntitySet="FurnitureModel" />
@@ -246,7 +293,8 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <End Role="Warehouse" EntitySet="Warehouse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FurnitureFabricModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -469,19 +517,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
             <Parameter Name="Cost" Mode="In" Type="Double" />
             <Parameter Name="SaleDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="GetProducts" ReturnType="Collection(FurnitureFabricModel.GetProducts_Result)">
-            <Parameter Name="FurnitureModelId" Mode="In" Type="Int32" />
-            <Parameter Name="AssemblyDate" Mode="In" Type="DateTime" />
-            <Parameter Name="StatusId" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GetProducts_Result">
-          <Property Type="Int32" Name="ProductId" Nullable="false" />
-          <Property Type="String" Name="SerialNumber" Nullable="false" MaxLength="10" />
-          <Property Type="Int32" Name="StatusId" Nullable="false" />
-          <Property Type="Int32" Name="FurnitureModelId" Nullable="false" />
-          <Property Type="DateTime" Name="AssemblyDate" Nullable="false" Precision="23" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -576,6 +612,14 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FurnitureColors" TypeName="FurnitureFabricModel.FurnitureColors" StoreEntitySet="FurnitureColors">
+            <EndProperty Name="Color">
+              <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+            </EndProperty>
+            <EndProperty Name="FurnitureModel">
+              <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="FurnitureMaterials" TypeName="FurnitureFabricModel.FurnitureMaterials" StoreEntitySet="FurnitureMaterials">
             <EndProperty Name="FurnitureModel">
               <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
@@ -587,17 +631,6 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="AddProductToWarehouse" FunctionName="FurnitureFabricModel.Store.AddProductToWarehouse" />
           <FunctionImportMapping FunctionImportName="GetUniqueSerialNumber" FunctionName="FurnitureFabricModel.Store.GetUniqueSerialNumber" />
           <FunctionImportMapping FunctionImportName="SaleProduct" FunctionName="FurnitureFabricModel.Store.SaleProduct" />
-          <FunctionImportMapping FunctionImportName="GetProducts" FunctionName="FurnitureFabricModel.Store.GetProducts" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FurnitureFabricModel.GetProducts_Result">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="FurnitureModelId" ColumnName="FurnitureModelId" />
-                <ScalarProperty Name="AssemblyDate" ColumnName="AssemblyDate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -613,7 +646,7 @@ FROM [dbo].[FurnitureMaterials] AS [FurnitureMaterials]</DefiningQuery>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

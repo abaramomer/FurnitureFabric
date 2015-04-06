@@ -57,6 +57,7 @@
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\ImportService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ReportService.cs" />
     <Compile Include="ViewModels\FurnitureModel\FurnitureModelsViewModel.cs" />
     <Compile Include="ViewModels\FurnitureModel\ShortFurnitureModelViewModel.cs" />
     <Compile Include="ViewModels\ImportViewModels\ImportResult.cs" />
@@ -65,6 +66,8 @@
     <Compile Include="ViewModels\ProductModels\ProductFilterViewModel.cs" />
     <Compile Include="ViewModels\ProductModels\ProductGridViewModel.cs" />
     <Compile Include="ViewModels\ProductModels\ProductListItemViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModels\ReportItemViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModels\ReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
