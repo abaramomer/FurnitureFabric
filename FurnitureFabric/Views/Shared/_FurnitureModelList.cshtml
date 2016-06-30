@@ -1,0 +1,9 @@
+﻿@using FurnitureFabric.Properties
+@model Business.ViewModels.FurnitureModel.FurnitureModelsViewModel
+
+<h2>@Resources.ClientMain_ListName</h2>
+@foreach(var model in Model.FurnitureModels)
+{
+    @Html.Partial("_ShortFurnitureModel", model);   
+}
+

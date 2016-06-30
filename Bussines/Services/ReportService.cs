@@ -10,7 +10,8 @@ namespace Business.Services
         private readonly Dictionary<int, string> mapReportNameToId = 
             new Dictionary<int, string>
         {
-            {1, "SalesProduct"}
+            {1, "SalesProduct"},
+            {2, "FurnitureModels"}
         };
 
         public ReportViewModel GetReport(int? reportId)

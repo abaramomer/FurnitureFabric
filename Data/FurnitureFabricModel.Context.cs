@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Data;
+using System.Data.SqlClient;
+
 namespace Data
 {
     using System;
@@ -57,17 +60,12 @@ namespace Data
         public DbSet<Sale> Sale { get; set; }
         public DbSet<Warehouse> Warehouse { get; set; }
     
-        public virtual int AddProductToWarehouse(Nullable<int> furnitureModelId, Nullable<System.DateTime> assemblyDate)
+        public virtual void AddProductToWarehouse(Nullable<int> furnitureModelId, Nullable<System.DateTime> assemblyDate)
         {
-            var furnitureModelIdParameter = furnitureModelId.HasValue ?
-                new ObjectParameter("FurnitureModelId", furnitureModelId) :
-                new ObjectParameter("FurnitureModelId", typeof(int));
-    
-            var assemblyDateParameter = assemblyDate.HasValue ?
-                new ObjectParameter("AssemblyDate", assemblyDate) :
-                new ObjectParameter("AssemblyDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProductToWarehouse", furnitureModelIdParameter, assemblyDateParameter);
+            var furnitureModelIdParameter = new SqlParameter("@FurnitureModelId", furnitureModelId.Value);
+            var assemblyDateParameter = new SqlParameter("@AssemblyDate", assemblyDate.Value);
+            Database.ExecuteSqlCommand("AddProductToWarehouse @FurnitureModelId, @AssemblyDate",
+                furnitureModelIdParameter, assemblyDateParameter);
         }
     
         public virtual ObjectResult<string> GetUniqueSerialNumber()
@@ -90,6 +88,14 @@ namespace Data
                 new ObjectParameter("SaleDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaleProduct", productIdParameter, costParameter, saleDateParameter);
+        }
+
+        public virtual void GetProducts(int? furnitureModelId, int? statusId)
+        {
+            var furnitureModelIdParameter = new SqlParameter("@FurnitureModelId", furnitureModelId);
+            var statusIdParameter = new SqlParameter("@StatusId", statusId);
+            var result = Database.SqlQuery<Product>("GetProducts @FurnitureModelId, @AssemblyDate, @StatusId",
+                furnitureModelIdParameter, null, statusIdParameter);
         }
     }
 }

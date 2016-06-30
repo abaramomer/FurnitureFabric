@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="ClientViewModels\MainMenuViewModel.cs" />
+    <Compile Include="ClientViewModels\WarehouseMenuViewModel.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -222,10 +223,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Shared\_FurnitureModelList.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_HeaderView.cshtml" />
-    <Content Include="Views\Client\ShortFurnitureModel.cshtml" />
+    <Content Include="Views\Shared\_ShortFurnitureModel.cshtml" />
     <Content Include="Views\Shared\_MenuView.cshtml" />
     <Content Include="Views\Import\Index.cshtml" />
     <Content Include="Views\Import\ImportResultView.cshtml" />
@@ -234,6 +235,13 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Report\ReportItems.cshtml" />
+    <Content Include="Views\Warehouse\AddProduct.cshtml" />
+    <Content Include="Views\Warehouse\ProductAdded.cshtml" />
+    <Content Include="Views\Warehouse\AddFurnitureModel.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Warehouse\ModelList.cshtml" />
+    <Content Include="Views\Shared\_FullFurnitureModel.cshtml" />
+    <Content Include="Views\Warehouse\FurnitureModelShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

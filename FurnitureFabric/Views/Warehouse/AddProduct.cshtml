@@ -1,0 +1,16 @@
+﻿@model Business.ViewModels.ProductModels.ProductAddViewModel
+
+<div class="main-content">
+    @using (Html.BeginForm("AddProduct", "Warehouse", FormMethod.Post))
+    {
+        <h2 class="text-center">Select model</h2>
+
+        @Html.DropDownListFor(x => x.FurnitureModelId, Model.FurnitureModels, new { @class = "form-control" })
+
+        <br />
+        @Html.TextBoxFor(x => x.AssemblyDate);
+        
+        <br />
+        <input style="width:200px;" class="btn btn-primary btn-lg center-block" type="submit" value="Add" />
+    }
+</div>

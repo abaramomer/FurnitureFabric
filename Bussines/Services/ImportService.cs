@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using Business.ViewModels.ImportViewModels;
-using Business.ViewModels.ImportViewModels;
 using Data;
 using Domain;
 using ImportTools;
@@ -25,6 +24,7 @@ namespace Business.Services
             ImportViewModel viewModel = new ImportViewModel();
             FillSupportedImportedEnteties(viewModel);
 
+            UnitOfWork.Dispose();
             return viewModel;
         }
 

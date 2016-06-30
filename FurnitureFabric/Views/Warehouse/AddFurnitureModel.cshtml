@@ -1,0 +1,38 @@
+﻿@model Business.ViewModels.FurnitureModel.FurnitureAddViewModel
+
+<div class="main-content">
+    @using (Html.BeginForm("AddFurnitureModel", "Warehouse", FormMethod.Post))
+    {
+        
+        <h2 class="text-center">Name</h2>
+
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+
+        <br />
+        
+        <h2 class="text-center">Select room</h2>
+
+        @Html.DropDownListFor(x => x.SelectedRoom, Model.Rooms, new { @class = "form-control" })
+
+        <br />
+        <h2 class="text-center">Select type</h2>
+
+        @Html.DropDownListFor(x => x.SelectedType, Model.Types, new { @class = "form-control" })
+
+        <br />
+        
+        <h2 class="text-center">Select materials</h2>
+
+        @Html.ListBoxFor(x => x.SelectedMaterials, Model.Materials, new { @class = "form-control" })
+
+        <br />
+        <h2 class="text-center">AdditionalInfo</h2>
+
+        @Html.TextAreaFor(x => x.AdditionalInfo, new { @class = "form-control" })
+
+        <br />
+        <h2 class="text-center">Image</h2>
+        <input type="file" name="image"/>
+        <input style="width:200px;" class="btn btn-primary btn-lg center-block" type="submit" value="Add" />
+    }
+</div>

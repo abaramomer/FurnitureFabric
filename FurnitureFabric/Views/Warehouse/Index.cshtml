@@ -1,3 +1,9 @@
-﻿<div class="main-content">
-    
+﻿@model FurnitureFabric.ClientViewModels.WarehouseMenuViewModel
+<div class="main-content">
+    @foreach (var item in Model.Items)
+{
+    <div class="menu-item">
+        <a href="/Warehouse/@item.Value">@item.Key</a>
+    </div>
+}
 </div>

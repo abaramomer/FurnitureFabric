@@ -1,5 +1,7 @@
 ﻿@model Business.ViewModels.FurnitureModel.ShortFurnitureModelViewModel
 <div class="list-group-item" >
-    <h3 class="text-center"> @Model.Name</h3>
+    <a href="/Warehouse/FurnitureModelShow/@Model.ModelId">
+        <h3 class="text-center"> @Model.Name</h3>
+    </a>
     <img style="display: inline; max-height: 150px; max-width: 150px;" src="/Images/nodata.png" />
 </div>
